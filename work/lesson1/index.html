@@ -30,5 +30,54 @@
 		<img src="http://cdn.tgp.qq.com/tgp/oss-images/oss_5a3ccb7228ac0.jpg">
 	</p>   
 
+
+<script>
+	function refreshImg () {
+		//获取li数量
+		var liNumbers = document.getElementsByTagName('li').length;
+		var liPre = "";
+		var liNormalStyle = "color:#333;font-weight:normal;"
+		var liCurrentStyle = "color:#F00;font-weight:bold;"
+
+		//遍历li绑定事件
+		for(var i=0; i<liNumbers; i++){
+			//获取a对象
+			var linkObj = document.getElementsByTagName("li")[i].childNodes[1];
+			//获取img对象
+			var imgObj = document.getElementsByTagName("img")[0];
+
+			//设置a对象默认样式
+			linkObj.setAttribute("style",liNormalStyle);
+
+			//li绑定点击事件
+			linkObj.onclick = function(){
+
+				if(liPre != ""){
+					//设置a对象默认样式
+					liPre.setAttribute("style",liNormalStyle);
+				}
+				//保存当前点击对象
+				liPre = this;
+
+				//设置a对象当前样式
+				this.setAttribute("style",liCurrentStyle);
+
+				//获取当前a href属性
+				var imgUrl = this.getAttribute("href");
+
+				//设置图片属性
+				imgObj.setAttribute("src",imgUrl);
+				return false;
+			}
+		}
+
+	}
+
+	//页面加载后执行
+	window.onload = refreshImg();
+
+</script>
+
+
 </body>
 </html>
