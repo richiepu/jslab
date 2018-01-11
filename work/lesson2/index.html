@@ -7,7 +7,7 @@
   <link rel="stylesheet" type="text/css" media="screen" href="styles/typography.css" />
 </head>
 
-<body>
+<body id="pageBody">
   <h1>What is the Document Object Model?</h1>
   <p>
     The
@@ -28,6 +28,61 @@
     <abbr title="eXtensible Markup Language">XML
     </abbr> documents.
   </p>
-</body>
 
+<script>
+
+  function initTextList(){
+      var divTextWrap  = document.createElement("div");
+      divTextWrap.setAttribute('id','textWrap');
+      divTextWrap.setAttribute("style","padding:50px 0 0 0");
+      document.getElementsByTagName('body')[0].appendChild(divTextWrap);
+  }
+
+  function explainText () {
+
+      //初始化容器
+      initTextList(); 
+
+      var keyWordsObj = document.getElementsByTagName('abbr');
+      var keyWordsNum = keyWordsObj.length;
+      var textWrapObj = document.getElementById("textWrap");
+
+
+      for( var i=0;i<keyWordsNum;i++ ){
+
+        //获取关键字 标题内容
+        var itemTitleText = keyWordsObj[i].innerText;
+        //获取关键字 title 摘要内容
+        var itemDescText = keyWordsObj[i].getAttribute("title");
+
+        //创建标签
+        var listItemObj  = document.createElement("div");
+        listItemObj.setAttribute("style","padding:0 0 20px 0");
+        var listItemTitleObj  = document.createElement("strong");
+        listItemTitleObj.setAttribute("style","color:#F00");
+        var listItemDescObj  = document.createElement("p");
+        
+        //追加对象
+        listItemObj.appendChild(listItemTitleObj);        
+        listItemObj.appendChild(listItemDescObj);
+
+        //设置标题元素文本内容
+        var itemTitleObjText=document.createTextNode(itemTitleText);
+        listItemTitleObj.appendChild(itemTitleObjText);
+
+        //设置标题元素文本内容
+        var itemDescObjText=document.createTextNode(itemDescText);
+        listItemDescObj.appendChild(itemDescObjText);
+
+        //追加关键字元素列表对象
+        textWrapObj.appendChild(listItemObj);
+
+      }
+  }
+  
+  //页面加载后执行
+  window.onload = explainText();
+</script>
+
+</body>
 </html>
