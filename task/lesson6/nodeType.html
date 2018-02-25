@@ -22,6 +22,7 @@
       }
       if(demolist.hasChildNodes()){
         var ch=demolist.childNodes;
+        console.log('节点数量：'+ch.length);
         for(var i=0;i<ch.length;i++){
           domstring+='nodeName:'+ch[i].nodeName+',nodeType:'+ch[i].nodeType+'\n'
         }
